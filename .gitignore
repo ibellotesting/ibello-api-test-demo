@@ -1,0 +1,15 @@
+/target/
+/build/
+/bin/
+/out/
+/ibello/.settings
+/ibello/*.pid
+/ibello/results/
+/.settings/
+/ibello.log
+/.idea
+/features/sandbox/
+/kovetelmenyek/*.md
+/követelmények/
+
+

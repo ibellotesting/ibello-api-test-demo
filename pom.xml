@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>mygroup</groupId>
+    <artifactId>myproject</artifactId>
+    <version>0.0.1</version>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>hu.ibello</groupId>
+            <artifactId>ibello-api</artifactId>
+            <version>1.21.1</version>
+        </dependency>
+    </dependencies>
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/lib</outputDirectory>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<excludeGroupIds>
+								junit,org.testng,org.hamcrest,org.mockito,org.powermock,hu.ibello,${project.groupId}
+							</excludeGroupIds>
+							<includeScope>compile</includeScope>
+							<excludeScope>provided</excludeScope>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<verbose>true</verbose>
+					<detail>true</detail>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>ibello-clean-all</id>
+						<configuration>
+							<target>
+								<condition property="ibello.command" value="ibello.cmd" else="ibello">
+									<os family="windows"/>
+								</condition>
+								<exec executable="${ibello.command}" failonerror="true" failifexecutionfails="true">
+									<arg value="clean" />
+									<arg value="-k0" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>ibello-run-all</id>
+						<configuration>
+							<target>
+								<condition property="ibello.command" value="ibello.cmd" else="ibello">
+									<os family="windows"/>
+								</condition>
+								<exec executable="${ibello.command}" failonerror="true" failifexecutionfails="true">
+									<arg value="run" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>ibello-cucumber-all</id>
+						<configuration>
+							<target>
+								<condition property="ibello.command" value="ibello.cmd" else="ibello">
+									<os family="windows"/>
+								</condition>
+								<exec executable="${ibello.command}" failonerror="true" failifexecutionfails="true">
+									<arg value="cucumber" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
