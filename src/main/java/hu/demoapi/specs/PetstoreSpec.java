@@ -20,6 +20,8 @@ public class PetstoreSpec {
 	private PutPetSteps putPet;
 	private DelPetSteps delPet;
 
+	//ibello run -j*PetstoreSpec*
+
 	@Test(order=1)
 	public void kisállat_létrehozható() throws IOException, TransformerException {
 		postPet.a_végpont_hívása_$_tesztadattal("zsomi");

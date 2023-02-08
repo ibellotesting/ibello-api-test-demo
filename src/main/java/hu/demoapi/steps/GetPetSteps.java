@@ -11,6 +11,7 @@ import java.io.IOException;
 @Name("Get pet")
 public class GetPetSteps extends AbstractDemoApiSteps<Long, PetModel> {
 
+	//GET /pet/{petID}
 	private TestDataSteps testData;
 
 	public void a_végpont_hívása_$_paraméterrel(Long input) throws IOException, TransformerException {
@@ -26,10 +27,10 @@ public class GetPetSteps extends AbstractDemoApiSteps<Long, PetModel> {
 		}
 	}
 
-	public void ellenőrzés_a_válaszban_kapott_állat_neve_$(String name) {
+	public void ellenőrzés__a_válaszban_kapott_kisállat_adatai_megegyeznek_$_kisállat_adataival(PetModel expPet) {
 		assertions().assertThat(getOutput()).isNotNull();
-		assertions().assertThat(getOutput().getName()).isNotNull().isNotEmpty();
-		assertions().assertThat(getOutput().getName()).isEqualTo(name);
+		assertions().assertThat(getOutput().getName()).isEqualTo(expPet.getName());
+		assertions().assertThat(getOutput().getStatus()).isEqualTo(expPet.getStatus());
 	}
 	
 	@Override
@@ -51,5 +52,6 @@ public class GetPetSteps extends AbstractDemoApiSteps<Long, PetModel> {
 	protected Class<PetModel> getOutputType() {
 		return PetModel.class;
 	}
+
 
 }

@@ -11,6 +11,7 @@ import java.io.IOException;
 @Name("Delete pet")
 public class DelPetSteps extends AbstractDemoApiSteps<Long, Object> {
 
+	// DELETE /pet/{petID}
 	private TestDataSteps testData;
 
 	public void a_végpont_hívása_$_paraméterrel(Long input) throws IOException, TransformerException {

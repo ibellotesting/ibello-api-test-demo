@@ -10,11 +10,22 @@ import java.io.IOException;
 @Name("Post pet")
 public class PostPetSteps extends AbstractDemoApiSteps<PetModel, PetModel> {
 
+	// POST /pet
 	private TestDataSteps testData;
 
 	public void a_végpont_hívása_$_tesztadattal(String testDataId) throws IOException, TransformerException {
 		PetModel input = testData.kisállat_bemenet_betöltése_$_azonosítóval(testDataId);
 		sendAndReceive(input);
+	}
+
+	public void a_végpont_hívása_$_paraméterrel(PetModel input) throws IOException, TransformerException {
+		sendAndReceive(input);
+	}
+
+	public Long létrehozott_kisállat_azonosítója() {
+		assertions().assertThat(getOutput()).isNotNull();
+		assertions().assertThat(getOutput().getId()).isNotNull();
+		return getOutput().getId();
 	}
 
 	public void ellenőrzés__$_néven_létrejött_az_új_kisállat(String name) {
