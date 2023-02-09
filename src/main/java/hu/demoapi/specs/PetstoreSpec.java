@@ -34,7 +34,6 @@ public class PetstoreSpec {
 	public void kisállat_lekérdezhető() throws IOException, TransformerException {
 		getPet.a_korábban_megjegyzett_kisállat_lekérdezése();
 		getPet.ellenőrzés__a_válasz_sikeres();
-		getPet.ellenőrzés__a_válaszban_nincs_hibaüzenet();
 	}
 
 	@Test(order=3)

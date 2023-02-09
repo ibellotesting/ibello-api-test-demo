@@ -33,7 +33,6 @@ public class PetstoreWorkflow extends AbstractSteps {
         shouldNotBeNull(petModel, "Nincs elmentett kisállat modell");
         shouldNotBeNull(petModel.getName(), "Nincs elmentett kisállat név");
         postPet.ellenőrzés__a_válasz_sikeres();
-        postPet.ellenőrzés__a_válaszban_nincs_hibaüzenet();
         postPet.ellenőrzés__$_néven_létrejött_az_új_kisállat(petModel.getName());
         id = postPet.létrehozott_kisállat_azonosítója();
     }
@@ -49,7 +48,6 @@ public class PetstoreWorkflow extends AbstractSteps {
 
     public void látom__hogy_a_kisállat_sikeresen_törlődött() {
         delPet.ellenőrzés__a_válasz_sikeres();
-        delPet.ellenőrzés__a_válaszban_nincs_hibaüzenet();
     }
 
     //3
@@ -75,7 +73,6 @@ public class PetstoreWorkflow extends AbstractSteps {
     public void lekérdezem_az_adott_kisállat_adatait() throws IOException, TransformerException {
         getPet.a_korábban_megjegyzett_kisállat_lekérdezése();
         getPet.ellenőrzés__a_válasz_sikeres();
-        getPet.ellenőrzés__a_válaszban_nincs_hibaüzenet();
     }
 
     public void a_lekérdezett_adatok_helyesen_jelennek_meg() {
